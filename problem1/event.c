@@ -3,11 +3,14 @@
 #include <stdlib.h>
 
 Event *CreateEvent(char *name)
-{
-        Event *event=malloc(sizeof(Event));
-    strncpy(evento->eventName,name,strlen(name) +1);
-    event->next=NULL;
-    return evento;
+{  
+        
+Event *eptr = malloc(sizeof(Event));
+name[15] = 0;
+strncpy(eptr->eventName,name,strlen(name) + 1);
+eptr ->next = NULL;
+return eptr; 
+        
 }
 
 
