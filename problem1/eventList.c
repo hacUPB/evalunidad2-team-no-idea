@@ -5,14 +5,14 @@
 
 EventList *CreateEventList(void)
 {
-    EventList *event;
-    event = (EventList *)malloc(sizeof(EventList));
-    event ->head = NULL;
-    event ->last = NULL;
-    event ->isEmpty = 0;
-    if(!event)
+    EventList *elptr;
+    elptr = (EventList *)malloc(sizeof(EventList));
+    elptr ->head = NULL;
+    elptr ->last = NULL;
+    elptr ->isEmpty = 0;
+    if(!elptr)
         perror("None memory space reserve");
-    return event;
+    return elptr;
 }
 
 void DestroyEventList(EventList *this)
