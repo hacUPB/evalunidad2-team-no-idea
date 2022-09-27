@@ -5,6 +5,7 @@
 
 EventList *CreateEventList(void)
 {
+
     EventList *elptr;
     elptr = (EventList *)malloc(sizeof(EventList));
     elptr ->head = NULL;
