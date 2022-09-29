@@ -18,7 +18,7 @@ EventList *CreateEventList(void)
 
 void DestroyEventList(EventList *this)
 {
-
+free(this);
 }
 
 Event *SearchEvent(EventList *this, char *name)
@@ -54,6 +54,9 @@ void AddEvent(EventList *this, Event *event)
 
 void RemoveEvent(EventList *this, char *name)
 {
+/*Se deben ingresar dos logicas la primera va a encargarse de eliminar
+El evento que esta en la primera posicion, la segunda logica debe eliminar
+Un elemento en alguna posicion n, la posicion puede ser el last*/
 }
 
 void ListEvents(EventList *this)
