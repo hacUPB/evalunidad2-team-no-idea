@@ -23,12 +23,33 @@ void DestroyEventList(EventList *this)
 
 Event *SearchEvent(EventList *this, char *name)
 {
+    Event *event = this->head;
 
+    if(this->isEmpty != 0){
+        while(event != NULL){
+            if(strcmp(name, event->eventName) == 0){
+                return event;
+            }else{
+                event = event->next;
+            }
+        }
+    }else{
+        return NULL;
+    }
 }
 
 void AddEvent(EventList *this, Event *event)
 {
-
+    Event *aux = this->last;
+    //Usar la función de buscar para que no agregue un event existente
+    if(this->isEmpty == 0){
+        this->head = event;
+        this->last = event;
+        this->isEmpty = 1;
+    }else{
+        aux->next = event;
+        this->last = event;
+    }
 }
 
 void RemoveEvent(EventList *this, char *name)
@@ -37,5 +58,16 @@ void RemoveEvent(EventList *this, char *name)
 
 void ListEvents(EventList *this)
 {
+    Event *aux = this->head;
 
+    if(this->isEmpty == 0){
+        printf("empty\n");
+    }else{
+        do{
+            printf("%s\n", aux->eventName);
+            aux = aux->next;
+        }
+        while(aux != NULL);
+        
+    }
 }
