@@ -4,7 +4,7 @@
 // Event class
 typedef struct _event
 {
-    char eventName[16];
+    char eventName[32];
     struct _event *next;
 } Event;
 
