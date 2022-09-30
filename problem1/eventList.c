@@ -84,7 +84,7 @@ void RemoveEvent(EventList *this, char *name)
                     }
                         
                     if(event != this->last){
-                        while(nEvent->next != event->next){
+                        while(nEvent->next != event){
                             if(nEvent->next == event){
                                 nEvent->next = event->next;
                             }else{
