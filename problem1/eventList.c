@@ -43,22 +43,18 @@ void AddEvent(EventList *this, Event *event)
     Event *aux = this->last;
     Event *eventT = SearchEvent(this, event->eventName);
     
-    do{
         if(this->isEmpty == 0){
             this->head = event;
             this->last = event;
             this->isEmpty = 1;
         }else{
-            if(eventT->eventName == event->eventName){
-                eventT = NULL;
-            }else{
+            if(eventT == NULL){
                 aux->next = event;
                 this->last = event;
+            }else{
                 eventT = NULL;
             }
         }
-    }
-    while(eventT != NULL);
 }
 
 void RemoveEvent(EventList *this, char *name)
