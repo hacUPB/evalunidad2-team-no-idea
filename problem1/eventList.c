@@ -42,6 +42,8 @@ void AddEvent(EventList *this, Event *event)
 {
     Event *aux = this->last;
     //Usar la función de buscar para que no agregue un event existente
+    Event *evenT = SearchEvent(this, event);
+    if(strcmp(event->eventName, eventT->eventName) == 0){
     if(this->isEmpty == 0){
         this->head = event;
         this->last = event;
@@ -49,6 +51,7 @@ void AddEvent(EventList *this, Event *event)
     }else{
         aux->next = event;
         this->last = event;
+        }
     }
 }
 
