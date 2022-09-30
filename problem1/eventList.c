@@ -59,7 +59,7 @@ void AddEvent(EventList *this, Event *event)
 
 void RemoveEvent(EventList *this, char *name)
 {
-    Event *event = this->head;
+   Event *event = this->head;
 
     Event *nEvent = this->head;
 
@@ -72,25 +72,22 @@ void RemoveEvent(EventList *this, char *name)
                     event->next = NULL;*/
                 }else {
                     if(event == this->last){
-                        while(nEvent->next != NULL){
-                            this->last = nEvent;
-                            if(nEvent->next == event){
-                                nEvent->next = NULL;
-                            }else{
-                                nEvent = nEvent->next;
-                            }
+                        this->last = nEvent;
+                        if(nEvent->next == event){
+                            nEvent->next = NULL;
+                        }else{
+                            nEvent = nEvent->next;
                         }
                         
                     }
                         
                     if(event != this->last){
-                        while(nEvent->next != event){
-                            if(nEvent->next == event){
-                                nEvent->next = event->next;
-                            }else{
-                                nEvent = nEvent->next;
-                            }
+                        if(nEvent->next == event){
+                            nEvent->next = event->next;
+                        }else{
+                            nEvent = nEvent->next;
                         }
+                        
                         
                     }
                     
