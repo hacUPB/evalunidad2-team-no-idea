@@ -59,47 +59,45 @@ void AddEvent(EventList *this, Event *event)
 
 void RemoveEvent(EventList *this, char *name)
 {
-   Event *event = this->head;
-
-    Event *nEvent = this->head;
+    Event *event = this->head;
+    char flag = 0;
+    Event *nEvent = SearchEvent(this, name);
 
     if(this->isEmpty != 0){
-        while(event != NULL){
-            if(strcmp(name, event->eventName) == 0){
-                if(event == this->head){
-                    this->head = event->next;
-                    
-                }else {
-                    if(event == this->last){
-                        this->last = nEvent;
-                        if(nEvent->next == event){
-                            nEvent->next = NULL;
+        if(nEvent != NULL){
+            do{
+                if(nEvent == this->head){
+                    this->head = nEvent->next;
+                    DestroyEvent(nEvent);
+                    flag = 1;
+                        
+                }else {/*
+                    if(nEvent->next == event){
+                        nEvent->next = event->next;
+                    }else{
+                        nEvent = nEvent->next;
+                    }    */
 
-                        }else{
-                            nEvent = nEvent->next;
-                        }
-                        
+                    while(event->next != nEvent){
+                        event = event->next;
                     }
-                        
-                    if(event != this->last){
-                        if(nEvent->next == event){
-                            nEvent->next = event->next;
-                        }else{
-                            nEvent = nEvent->next;
-                        }
-                        
-                        
+
+                    if(nEvent == this->last){
+                        event->next = nEvent->next;
+                        DestroyEvent(nEvent);
+                        this->last = event;
+                        flag = 1;
+                    }else{
+                        event->next = nEvent->next;
+                        DestroyEvent(nEvent);
+                        flag = 1;
                     }
-                    
                 }
-                
-            }else{
-                event = event->next;
-            }
+            }while(flag != 1);
         }
-    }else{
-        printf("empty\n");
+        
     }
+
 }
 
 void ListEvents(EventList *this)
