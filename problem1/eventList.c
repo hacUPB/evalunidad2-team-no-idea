@@ -63,9 +63,7 @@ void RemoveEvent(EventList *this, char *name)
 
     Event *nEvent = this->head;
 
-    Event *searched = SearchEvent(this, name);
-
-    if(searched->eventName == name){
+    if(this->isEmpty != 0){
         while(event != NULL){
             if(strcmp(name, event->eventName) == 0){
                 if(event == this->head){
@@ -99,6 +97,9 @@ void RemoveEvent(EventList *this, char *name)
                 event = event->next;
             }
         }
+    }else{
+        printf("empty\n");
+    }
 }
 
 void ListEvents(EventList *this)
