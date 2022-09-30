@@ -42,17 +42,19 @@ void AddEvent(EventList *this, Event *event)
 {
     Event *aux = this->last;
     //Usar la función de buscar para que no agregue un event existente
-    Event *evenT = SearchEvent(this, event);
-    if(strcmp(event->eventName, eventT->eventName) < 0){
-    if(this->isEmpty == 0){
-        this->head = event;
-        this->last = event;
-        this->isEmpty = 1;
-    }else{
-        aux->next = event;
-        this->last = event;
+    Event *eventT = SearchEvent(this, event->eventName);
+    
+    do{
+        if(this->isEmpty == 0){
+            this->head = event;
+            this->last = event;
+            this->isEmpty = 1;
+        }else{
+            aux->next = event;
+            this->last = event;
         }
     }
+    while(eventT != NULL);
 }
 
 void RemoveEvent(EventList *this, char *name)
