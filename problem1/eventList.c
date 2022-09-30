@@ -41,7 +41,6 @@ Event *SearchEvent(EventList *this, char *name)
 void AddEvent(EventList *this, Event *event)
 {
     Event *aux = this->last;
-    //Usar la función de buscar para que no agregue un event existente
     Event *eventT = SearchEvent(this, event->eventName);
     
     do{
@@ -50,8 +49,13 @@ void AddEvent(EventList *this, Event *event)
             this->last = event;
             this->isEmpty = 1;
         }else{
-            aux->next = event;
-            this->last = event;
+            if(eventT->eventName == event->eventName){
+                eventT = NULL;
+            }else{
+                aux->next = event;
+                this->last = event;
+                eventT = NULL;
+            }
         }
     }
     while(eventT != NULL);
@@ -59,9 +63,47 @@ void AddEvent(EventList *this, Event *event)
 
 void RemoveEvent(EventList *this, char *name)
 {
-/*Se deben ingresar dos logicas la primera va a encargarse de eliminar
-El evento que esta en la primera posicion, la segunda logica debe eliminar
-Un elemento en alguna posicion n, la posicion puede ser el last*/
+    Event *event = this->head;
+
+    Event *nEvent = this->head;
+
+    if(this->isEmpty != 0){
+        while(event != NULL){
+            if(strcmp(name, event->eventName) == 0){
+                if(event == this->head){
+                    this->head = event->next;
+                    /*event->eventName = NULL;
+                    event->next = NULL;*/
+                }else {
+                    while(nEvent->next != event->next){
+                        if(event == this->last){
+                            this->last = nEvent;
+                            if(nEvent->next == event){
+                                nEvent->next = NULL;
+                            }else{
+                                nEvent = nEvent->next;
+                            }
+                        }
+                        
+                        if(event != this->last){
+                            if(nEvent->next == event){
+                                nEvent->next = event->next;
+                            }else{
+                                nEvent = nEvent->next;
+                            }
+                        }
+                    }
+                    /*event->eventName = NULL;
+                    event->next = NULL;*/
+                }
+                
+            }else{
+                event = event->next;
+            }
+        }
+    }else{
+        printf("empty\n");
+    }
 }
 
 void ListEvents(EventList *this)
